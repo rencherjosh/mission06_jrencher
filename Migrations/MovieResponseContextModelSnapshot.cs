@@ -15,14 +15,39 @@ namespace mission06_jrencher.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.32");
 
+            modelBuilder.Entity("mission06_jrencher.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Action"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Romance"
+                        });
+                });
+
             modelBuilder.Entity("mission06_jrencher.Models.MovieResponse", b =>
                 {
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -47,13 +72,15 @@ namespace mission06_jrencher.Migrations
 
                     b.HasKey("Title");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Responses");
 
                     b.HasData(
                         new
                         {
                             Title = "Antman and the Wasp",
-                            Category = "Action",
+                            CategoryId = 1,
                             Director = "Thanos",
                             Edited = true,
                             LentTo = "N/A",
@@ -64,7 +91,7 @@ namespace mission06_jrencher.Migrations
                         new
                         {
                             Title = "Spiderman: No Way Home",
-                            Category = "Action",
+                            CategoryId = 1,
                             Director = "Wanda",
                             Edited = false,
                             LentTo = "Nathan",
@@ -75,7 +102,7 @@ namespace mission06_jrencher.Migrations
                         new
                         {
                             Title = "Endgame",
-                            Category = "Action",
+                            CategoryId = 1,
                             Director = "Thanos",
                             Edited = false,
                             LentTo = "N/A",
@@ -83,6 +110,15 @@ namespace mission06_jrencher.Migrations
                             Rating = "PG-13",
                             Year = 2016
                         });
+                });
+
+            modelBuilder.Entity("mission06_jrencher.Models.MovieResponse", b =>
+                {
+                    b.HasOne("mission06_jrencher.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

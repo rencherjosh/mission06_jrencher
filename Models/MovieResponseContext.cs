@@ -16,14 +16,19 @@ namespace mission06_jrencher.Models
 
         //Build database of movie responces
         public DbSet<MovieResponse> Responses { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
             //Seeding the Database
+            mb.Entity<Category>().HasData(
+                    new Category { CategoryId=1, CategoryName="Action"},
+                    new Category { CategoryId=2, CategoryName="Romance"}
+                );
             mb.Entity<MovieResponse>().HasData(
                 new MovieResponse
                 {
-                    Category = "Action",
+                    CategoryId = 1,
                     Title = "Antman and the Wasp",
                     Year = 2016,
                     Director = "Thanos",
@@ -34,7 +39,7 @@ namespace mission06_jrencher.Models
                 },
                 new MovieResponse
                 {
-                    Category = "Action",
+                    CategoryId = 1,
                     Title = "Spiderman: No Way Home",
                     Year = 2022,
                     Director = "Wanda",
@@ -45,7 +50,7 @@ namespace mission06_jrencher.Models
                 },
                 new MovieResponse
                 {
-                    Category = "Action",
+                    CategoryId = 1,
                     Title = "Endgame",
                     Year = 2016,
                     Director = "Thanos",

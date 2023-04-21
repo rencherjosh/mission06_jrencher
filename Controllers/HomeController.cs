@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using mission06_jrencher.Models;
 using System;
@@ -11,12 +12,11 @@ namespace mission06_jrencher.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+
         private MovieResponseContext enteredContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, MovieResponseContext mrc)
+        public HomeController(MovieResponseContext mrc)
         {
-            _logger = logger;
             enteredContext = mrc;
         }
 
@@ -36,6 +36,7 @@ namespace mission06_jrencher.Controllers
         [HttpGet]
         public IActionResult MovieForm ()
         {
+            ViewBag.Categories = enteredContext.Categories.ToList();
             return View();
         }
 
@@ -48,15 +49,15 @@ namespace mission06_jrencher.Controllers
             return View("Confirmation", mr);
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult MoviesView()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            //Sends responses to a list and passes the list to the view
+            var movies = enteredContext.Responses
+                .Include(x => x.Category)
+                .OrderBy(x => x.Title)
+                .ToList();
+            return View(movies);
         }
     }
 }
