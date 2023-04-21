@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace mission06_jrencher.Models
+
+    //Creates a movie responce model that is used for each movie entry.
 {
     public class MovieResponse
     {
@@ -27,6 +29,7 @@ namespace mission06_jrencher.Models
     }
 }
 
+//Needed Variables, their options, and required status.
 //Category
 //Title
 //Year

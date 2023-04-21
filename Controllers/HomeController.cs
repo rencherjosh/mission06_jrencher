@@ -20,22 +20,26 @@ namespace mission06_jrencher.Controllers
             enteredContext = mrc;
         }
 
+        //Returns Home Page
         public IActionResult Index()
         {
             return View();
         }
 
+        //Returns Podcast View
         public IActionResult Podcast()
         {
             return View();
         }
 
+        //Returns MovieForm View
         [HttpGet]
         public IActionResult MovieForm ()
         {
             return View();
         }
 
+        //Passes entered data to the database and saves it. Returns the confirmation view.
         [HttpPost]
         public IActionResult MovieForm(MovieResponse mr)
         {

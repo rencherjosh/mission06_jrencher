@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    @*Shared Nav Bar for All Pages*@
     <nav>
         <a asp-controller="Home" asp-action="Index">Home</a>
         <a asp-controller="Home" asp-action="MovieForm">Movie Form</a>
         <a asp-controller="Home" asp-action="Podcast">My Podcast</a>
     </nav>
+    @*Dynamicaly displays the page you want to look at.*@
     <div>
         @RenderBody()
     </div>

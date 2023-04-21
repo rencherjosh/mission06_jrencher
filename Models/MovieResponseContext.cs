@@ -14,6 +14,7 @@ namespace mission06_jrencher.Models
             //Leave Blank for Now
         }
 
+        //Build database of movie responces
         public DbSet<MovieResponse> Responses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
