@@ -22,13 +22,15 @@ namespace mission06_jrencher.Models
         {
             //Seeding the Database
             mb.Entity<Category>().HasData(
-                    new Category { CategoryId=1, CategoryName="Action"},
-                    new Category { CategoryId=2, CategoryName="Romance"}
+                    new Category { CategoryId=1, CategoryName="Action/Adventure"},
+                    new Category { CategoryId=2, CategoryName="Comedy"},
+                    new Category { CategoryId = 3, CategoryName = "Drama" },
+                    new Category { CategoryId = 4, CategoryName = "Family" }
                 );
             mb.Entity<MovieResponse>().HasData(
                 new MovieResponse
                 {
-                    CategoryId = 1,
+                    CategoryId = 2,
                     Title = "Antman and the Wasp",
                     Year = 2016,
                     Director = "Thanos",

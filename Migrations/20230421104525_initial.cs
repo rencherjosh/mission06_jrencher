@@ -46,17 +46,22 @@ namespace mission06_jrencher.Migrations
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 1, "Action" });
+                values: new object[] { 1, "Action/Adventure" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 2, "Romance" });
+                values: new object[] { 2, "Comedy" });
 
             migrationBuilder.InsertData(
-                table: "Responses",
-                columns: new[] { "Title", "CategoryId", "Director", "Edited", "LentTo", "Notes", "Rating", "Year" },
-                values: new object[] { "Antman and the Wasp", 1, "Thanos", true, "N/A", "Funny", "PG-13", 2016 });
+                table: "Categories",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[] { 3, "Drama" });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[] { 4, "Family" });
 
             migrationBuilder.InsertData(
                 table: "Responses",
@@ -67,6 +72,11 @@ namespace mission06_jrencher.Migrations
                 table: "Responses",
                 columns: new[] { "Title", "CategoryId", "Director", "Edited", "LentTo", "Notes", "Rating", "Year" },
                 values: new object[] { "Endgame", 1, "Thanos", false, "N/A", "So So Good", "PG-13", 2016 });
+
+            migrationBuilder.InsertData(
+                table: "Responses",
+                columns: new[] { "Title", "CategoryId", "Director", "Edited", "LentTo", "Notes", "Rating", "Year" },
+                values: new object[] { "Antman and the Wasp", 2, "Thanos", true, "N/A", "Funny", "PG-13", 2016 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Responses_CategoryId",

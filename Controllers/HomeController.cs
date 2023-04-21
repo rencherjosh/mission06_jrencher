@@ -34,7 +34,7 @@ namespace mission06_jrencher.Controllers
 
         //Returns MovieForm View
         [HttpGet]
-        public IActionResult MovieForm ()
+        public IActionResult MovieForm()
         {
             ViewBag.Categories = enteredContext.Categories.ToList();
             return View();
@@ -44,9 +44,18 @@ namespace mission06_jrencher.Controllers
         [HttpPost]
         public IActionResult MovieForm(MovieResponse mr)
         {
-            enteredContext.Add(mr);
-            enteredContext.SaveChanges();
-            return View("Confirmation", mr);
+            if (ModelState.IsValid)
+            {
+                enteredContext.Add(mr);
+                enteredContext.SaveChanges();
+                return View("Confirmation", mr);
+            }
+            else //If Invalid
+            {
+                ViewBag.Categories = enteredContext.Categories.ToList();
+                return View(mr);
+            }
+
         }
 
         [HttpGet]
@@ -58,6 +67,41 @@ namespace mission06_jrencher.Controllers
                 .OrderBy(x => x.Title)
                 .ToList();
             return View(movies);
+        }
+
+        //Creates a way to edit entries
+        [HttpGet]
+        public IActionResult Edit(string title)
+        {
+            ViewBag.Categories = enteredContext.Categories.ToList();
+            var category = enteredContext.Responses.Single(x => x.Title == title);
+            return View("MovieForm", category);
+        }
+
+        //Submits and saves the changes
+        [HttpPost]
+        public IActionResult Edit(MovieResponse mr)
+        {
+            enteredContext.Update(mr);
+            enteredContext.SaveChanges();
+            return RedirectToAction("MoviesView");
+        }
+
+        //Gets data to be able to delete record
+        [HttpGet]
+        public IActionResult Delete(string title)
+        {
+            var category = enteredContext.Responses.Single(x => x.Title == title);
+            return View(category);
+        }
+
+        //Deletes records
+        [HttpPost]
+        public IActionResult Delete(MovieResponse mr)
+        {
+            enteredContext.Responses.Remove(mr);
+            enteredContext.SaveChanges();
+            return RedirectToAction("MoviesView");
         }
     }
 }

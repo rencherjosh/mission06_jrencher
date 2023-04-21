@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+//Creates a second table information
+
 namespace mission06_jrencher.Models
 {
     public class Category

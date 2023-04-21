@@ -32,12 +32,22 @@ namespace mission06_jrencher.Migrations
                         new
                         {
                             CategoryId = 1,
-                            CategoryName = "Action"
+                            CategoryName = "Action/Adventure"
                         },
                         new
                         {
                             CategoryId = 2,
-                            CategoryName = "Romance"
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Drama"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Family"
                         });
                 });
 
@@ -80,7 +90,7 @@ namespace mission06_jrencher.Migrations
                         new
                         {
                             Title = "Antman and the Wasp",
-                            CategoryId = 1,
+                            CategoryId = 2,
                             Director = "Thanos",
                             Edited = true,
                             LentTo = "N/A",

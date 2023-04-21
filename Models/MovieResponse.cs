@@ -11,6 +11,7 @@ namespace mission06_jrencher.Models
     public class MovieResponse
     {
         //Building the foreign key relationship
+        [Required]
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         [Key]

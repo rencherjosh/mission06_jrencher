@@ -6,11 +6,16 @@
 
 <h1>Movie Form</h1>
 
+@*Creates the movie form, and tells the site what to highlight when things are clicked on.*@
 <div>
     <form method="post">
+        //Creates validation error messages
+        <div asp-validation-summary="All"></div>
+
         <label asp-for="CategoryId">Category:</label>
         <select asp-for="CategoryId">
             <option value="">Select a Major</option>
+            @*Creates a dropdown list based on the categories*@
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId">@c.CategoryName</option>
